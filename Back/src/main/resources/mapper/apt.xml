@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.hh.model.mapper.HouseMapMapper">
+
+	<select id="getSido" resultType="sidoGugunCodeDto">
+		select left(sidoCode,2) sidoCode, sidoName
+		from sidocode
+		order by sidoCode
+	</select>
+	
+	<select id="getGugunInSido" parameterType="string" resultType="sidoGugunCodeDto">
+		select left(gugunCode,5) gugunCode, gugunName
+		from guguncode
+		where left(gugunCode,2) = #{sido}
+		order by gugunCode
+	</select>
+	
+	<select id="getDongInGugun" parameterType="string" resultType="houseInfoDto">
+		select distinct dong, dongCode
+		from houseinfo
+		where left(dongCode, 5) = #{gugun}
+		order by dong
+	</select>
+	
+	<select id="getAptInDong" parameterType="string" resultType="houseInfoDto">
+		select h.aptCode, h.apartmentName, h.buildyear, h.dongCode, h.dong, h.jibun, h.lat, h.lng, si.sidoname, gu.gugunname,
+				(select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice,
+				(select floor from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) floor,
+				(select area from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) area,
+				(select no from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) housedeal_no,
+				(select no from baseaddress where dongCode = h.dongCode) baseaddress_no
+		from houseinfo h
+		left join sidocode si
+		on left(h.dongcode,2) = left(si.sidocode,2)
+		left join guguncode gu
+		on left(h.dongcode,5) = left(gu.guguncode,5)
+		where dongCode = #{dong} 
+		order by apartmentName
+	</select>
+	
+	<select id="getAddress" parameterType="string" resultType="addressDto">
+		select sidoName, gugunName, dongName
+		from baseaddress
+		where dongCode = #{dongcode}
+	</select>
+	
+	<select id="getDetail" parameterType="string" resultType="houseDetailDto">
+		select hit, img, description
+		from housedetail
+		where aptCode = #{aptCode}
+	</select>
+	
+	<update id="updateHit">
+		UPDATE housedetail SET hit = hit+1 where aptCode=#{aptCode};
+	</update>
+	
+	<select id="isPos" parameterType="string" resultType="int">
+		select count(aptCode)
+		from housedeal
+		where aptCode = #{aptCode}
+	</select>
+	
+	<select id="searchdongCode" resultType="String">
+		select dongCode
+		from dongcode
+		where sidoName = #{sido} and gugunName = #{gugun} and dongName=#{dong}
+	</select>
+	
+	<insert id="registDeal">
+		insert into  housedeal (no, dealAmount, dealYear, dealMonth, dealDay, area, floor, aptCode)
+		values ((select no from (select no from housedeal order by no desc limit 1)A)+1,#{dealAmount}, YEAR(now()), Month(now()), DAY(now()), #{area}, #{floor}, #{aptCode})
+	</insert>
+	
+	<insert id="registDetail">
+		insert into housedetail (aptCode, description)
+		values (#{aptCode}, #{description})
+	</insert>
+	
+	<insert id="registInfo">
+		insert into houseinfo (aptCode, buildYear, dong, sigunguCode, eubmyundongCode, dongCode, apartmentName, lng, lat, jibun)
+		values (#{aptCode}, #{buildYear}, #{dong}, #{sigunguCode}, #{eubmyundongCode}, #{dongCode}, #{apartmentName}, #{lng}, #{lat}, #{jibun});
+	</insert>
+	
+	<select id="aptCode" resultType="BigInteger">
+		SELECT aptCode FROM happyhouse.housedetail order by aptCode desc limit 1
+	</select>
+	
+	<select id="getBaseAddressNo" resultType="int">
+		SELECT no FROM baseaddress WHERE dongCode = #{dongCode}
+	</select>
+
+	<select id="getUserIdInterest" resultType="String">
+		SELECT user_id FROM interest WHERE baseaddress_no = #{baseaddressNo}
+	</select>
+	
+	<select id="isInterestHouseUser" resultType="String">
+		SELECT user_id FROM interest_house WHERE housedeal_no = #{no}
+	</select>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.hh.model.mapper.InterestMapper">
+	<insert id="insert">
+		INSERT INTO interest (baseaddress_no, user_id) VALUES(#{baseaddress_no}, #{user_id})
+	</insert>
+	<select id="selectall" resultType="interestDto">
+		SELECT * FROM interest i JOIN baseaddress b 
+		ON i.baseaddress_no = b.no WHERE user_id=#{user_id}
+	</select>
+	<select id="select_no" resultType="int">
+		SELECT no FROM baseaddress WHERE dongCode=#{dongCode}
+	</select>
+	<delete id="delete">
+		DELETE FROM interest WHERE no=#{no}
+	</delete>
+</mapper>

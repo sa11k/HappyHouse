@@ -1,0 +1,63 @@
+/* searchSection */
+.searchSection {
+  width: 100%;
+  height: 80px;
+  background-color: rgb(61, 61, 61);
+  text-align: center;
+  line-height: 75px;
+}
+
+.dropdown {
+  display: inline-block;
+}
+
+.container {
+  margin-right: 0;
+  margin-left: 0;
+  max-width: 100%;
+}
+
+/* map */
+.map {
+  width: 100%;
+  height: 500px;
+  margin-top: 20px;
+  text-align: center;
+  line-height: 300px;
+}
+
+/* apt */
+.aptprint {
+  width: 100%;
+  height: auto;
+}
+
+.aptprint > h3 {
+  margin-top: 20px;
+  margin-left: 10px;
+  font-size: 25px;
+}
+
+.apt1 {
+  height: 110px;
+  width: 400px;
+  border-top: 1px solid rgb(214, 214, 214);
+}
+
+.apt2 {
+  height: 120px;
+  width: 400px;
+  border-top: 1px solid rgb(214, 214, 214);
+}
+
+.apt3 {
+  height: 100px;
+  width: 400px;
+  border-top: 1px solid rgb(214, 214, 214);
+}
+
+.apt4 {
+  height: 100px;
+  width: 400px;
+  border-top: 1px solid rgb(214, 214, 214);
+}

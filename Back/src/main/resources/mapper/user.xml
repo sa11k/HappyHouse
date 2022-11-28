@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.hh.model.mapper.UserMapper">
+
+	<select id="idCheck" parameterType="string" resultType="int">
+		select count(id)
+		from user
+		where id = #{id}
+	</select>
+
+	<insert id="registerUser" parameterType="userDto">
+		insert into user (id, pw, name, email, address, joinDate, isAgent, sms, phone)
+		values (#{id}, #{pw}, #{name}, #{email}, #{address}, now(), #{isAgent}, #{sms}, #{phone})
+	</insert>
+
+	<select id="login" parameterType="userDto" resultType="userDto">
+		select *
+		from user
+		where id = #{id} and pw = #{pw}
+	</select>
+	
+	<select id="listUser" resultType="userDto">
+		select id, pw, name, email, date_format(joinDate, '%y.%m.%d') joinDate, address, isAgent, phone, sms
+		from user
+		order by joinDate desc;
+	</select>
+	
+	<select id="getUser" parameterType="String" resultType="userDto">
+		select id, pw, name, email, date_format(joinDate, '%y.%m.%d') joinDate, address, isAgent, phone, sms
+		from user
+		where id = #{id}
+	</select>
+	
+	<update id="updateUser" parameterType="userDto">
+		update user
+		set pw = #{pw}, name=#{name}, email=#{email}, address=#{address}, isAgent=#{isAgent}, phone=#{phone}
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteUser" parameterType="String">
+		delete from user
+		where id = #{id}
+	</delete>
+
+	<select id="smsUser" resultType="String">
+		select phone from user where sms = 1 AND id = #{user_id}
+	</select>
+</mapper>

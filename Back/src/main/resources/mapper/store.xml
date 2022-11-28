@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.hh.model.mapper.StoreMapper">
+
+	<select id="getCafe" parameterType="string" resultType="storeDto">
+		select storeName, jibunAddress, roadAddress, lng, lat
+		from store
+		where mediumTypeCode like "Q12%" and dongcode = #{dong};
+	</select>
+	
+	<select id="getRestaurant" parameterType="string" resultType="storeDto">
+		select storeName, jibunAddress, roadAddress, lng, lat
+		from store
+		where smallTypeCode="D03A01" and dongcode = #{dong};
+	</select>
+
+</mapper>

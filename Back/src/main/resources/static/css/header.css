@@ -1,0 +1,176 @@
+body {
+	margin: 0;
+}
+
+.header {
+	height: 120px;
+	position: relative;
+	width: 100%;
+	/* z-index: 1; */
+	background: #ffffff;
+}
+
+/* 로그인 */
+.header>.login {
+	width: 100%;
+	max-width: 100%;
+	height: 30px;
+	background-color: black;
+	float: right;
+}
+
+.login>a {
+	margin-left: 30px;
+	line-height: 30px;
+	height: 30px;
+}
+
+.login_link {
+	font-size: 13px;
+	text-decoration: none;
+	color: white;
+}
+
+.header_login_menuitem {
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+}
+
+.header_login_confirm_off, .header_login_confirm_on {
+	position: relative;
+	max-width: 100%;
+	height: 30px;
+	float: right;
+	right: 20px;
+}
+
+.login img {
+	width: 10px;
+	height: 10px;
+	margin-left: 15px;
+}
+
+/* 네브바 */
+.header>.nav {
+	position: relative;
+	right: 0;
+	max-width: 100%;
+	width: 100%;
+	height: 60px;
+	float: right;
+	justify-content: space-between;
+}
+
+.nav>a {
+	float: left;
+	margin-left: 30px;
+	line-height: 60px;
+	height: 60px;
+}
+
+.nav_link {
+	font-size: 13px;
+	text-decoration: none;
+	color: gray;
+	font-weight: bold;
+}
+
+.header_nav_menuitem {
+	display: inline-block;
+	margin-right: 20px;
+	height: 60px;
+	line-height: 60px;
+}
+
+.searchicon {
+	width: 18px;
+	height: 18px;
+	margin-left: 15px;
+	margin-right: 10px;
+}
+
+.logo {
+	width: 130px;
+	height: 90px;
+}
+
+/* footer */
+.find-us {
+	margin-top:30px;
+	position: relative;
+	bottom: 0;
+	background-color: rgb(248, 248, 248);
+	color: gray;
+	width: 100%;
+	height: 170px;
+}
+
+.findElements {
+	display: inline-block;
+	margin-left: 20px;
+	margin-top: 15px;
+}
+
+.findtitle {
+	font-size: 20px;
+	text-decoration: dashed;
+	margin-top: 10px;
+}
+
+.findadd {
+	margin-top: 20px;
+	font-size: 13px;
+}
+
+.find {
+	margin-top: 5px;
+	font-size: 13px;
+}
+
+.copyright {
+	position: relative;
+	bottom: 0;
+	background-color: rgb(224, 223, 223);
+	color: gray;
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+}
+
+.copyright{
+	font-size: 12px;
+	text-align: center;
+}
+
+p.copyright{
+	margin:0;
+}
+
+.ssafy {
+	width: 70px;
+	height: 50px;
+	margin: 10px 10px 180px 10px;
+}
+
+img.contactimg {
+	width: 10px;
+	height: 10px;
+}
+
+/* 추가 */
+.masthead {
+	position : relative;
+	margin-bottom: 3rem;
+	padding-top: calc(8rem + 57px);
+	padding-bottom: 8rem;
+	background: no-repeat center center;
+	background-color: #6c757d;
+	background-size: cover;
+	background-attachment: scroll;
+}
+
+.headerName{
+	text-align: center;
+	color: white;
+}

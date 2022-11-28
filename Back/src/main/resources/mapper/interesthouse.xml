@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.hh.model.mapper.InteresthouseMapper">
+	<insert id="insert">
+		INSERT INTO interest_house (housedeal_no, user_id, apartmentName, dongCode, sidoName, gugunName, dongName) VALUES(#{housedeal_no}, #{user_id}, #{apartmentName}, #{dongCode}, #{sidoName}, #{gugunName}, #{dongName})
+	</insert>
+	<select id="selectall" resultType="interesthouseDto">
+		SELECT * FROM interest_house i JOIN housedeal h 
+		ON i.housedeal_no = h.no WHERE user_id=#{user_id}
+	</select>
+	<select id="select_no" resultType="BigInteger">
+		SELECT aptCode FROM housedeal WHERE no=#{housedeal_no}
+	</select>
+	<select id="select_deal" resultType="String">
+		SELECT aptCode FROM housedeal WHERE no=#{housedeal_no}
+	</select>
+	<select id="select_name" resultType="String">
+		SELECT apartmentName from houseinfo where aptCode=#{aptCode}
+	</select>
+	<select id="select_dongCode" resultType="String">
+		SELECT dongCode from houseinfo where aptCode=#{aptCode}
+	</select>
+	<select id="select_sidoName" resultType ="String">
+		SELECT sidoName from dongcode where dongCode=#{dongCode}
+	</select>
+	<select id="select_gugunName" resultType ="String">
+		SELECT gugunName from dongcode where dongCode=#{dongCode}
+	</select>
+	<select id="select_dongName" resultType ="String">
+		SELECT dongName from dongcode where dongCode=#{dongCode}
+	</select>
+	<delete id="delete">
+		DELETE FROM interest_house WHERE no=#{no}
+	</delete>
+	<delete id="deletedetail" parameterType="BigInteger">
+		DELETE FROM interest_house WHERE housedeal_no=#{no}
+	</delete>
+</mapper>
