@@ -72,7 +72,7 @@ public class HouseMapServiceImpl implements HouseMapService {
 		for(int i = 0; i<userlist.size(); i++) {
 			HashMap<String, String> params = new HashMap<String, String>();
 		    params.put("to", userlist.get(i));
-		    params.put("from", "01077530901");
+		    params.put("from", "01012345678");
 		    params.put("type", "SMS");
 		    params.put("text", "안녕하세요. HAPPYHOUSE 입니다. 관심 지역에 새로운 매물이 등록되었습니다. 행복한 하루 되세요!");
 		    
